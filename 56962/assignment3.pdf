@@ -1,0 +1,49 @@
+Muhammad Umer Farooq    56962
+BSCS 5B     Assignment3
+Multiplayer Game Code Architecture Design – Apex Legends
+1. Game Overview
+Apex Legends is a free-to-play battle royale game where squads of three players compete against other squads on a large map. Core mechanics include:
+•	Hero-based characters (“Legends”) with unique abilities.
+•	Squad-based combat with shooting, abilities, and teamwork.
+•	Looting weapons, armor, and consumables.
+•	Shrinking play zone to force encounters.
+•	Matchmaking and ranking systems.
+2. High-Level Architecture
+Major systems required:
+•	Player System Handles player profiles, stats, progression, and customization.
+•	Matchmaking System Pairs players into squads and matches based on skill, rank, and latency.
+•	Combat System Manages shooting mechanics, hit detection, damage calculation, and ability usage.
+•	Inventory System Controls looting, equipping weapons, managing consumables, and upgrades.
+•	Game State Management Tracks match phases (lobby, in-game, end-game), zone shrinking, and victory conditions.
+•	UI System Displays HUD, menus, health bars, inventory, and notifications.
+•	Networking System Synchronizes player actions, positions, and states across clients and servers.
+3. Code Structure
+Organization
+•	Core Classes
+o	Player: stores player data, stats, and abilities.
+o	Squad: groups players together.
+o	Match: manages match lifecycle and state.
+o	Weapon: defines weapon properties and behaviors.
+o	Ability: defines unique legend abilities.
+o	Inventory: manages items and equipment.
+o	GameState: tracks current phase and rules.
+o	UIManager: handles HUD and menus.
+o	NetworkManager: manages client-server communication.
+Components
+•	PlayerController: input handling, movement, ability activation.
+•	CombatManager: shooting, hit detection, damage resolution.
+•	MatchmakingService: squad formation, lobby management.
+•	ZoneManager: shrinking play zone logic.
+•	InventoryManager: loot spawning, pickup, and usage.
+•	UIComponents: health bar, minimap, inventory panel.
+Communication
+•	Event-driven architecture: Systems communicate via events (e.g., OnPlayerDamaged, OnItemPickedUp).
+•	Networking layer: Uses client-server model with authoritative server to prevent cheating.
+•	Dependency injection: Ensures modularity and testability.
+4. Design Decisions
+•	Client-Server Model: Chosen for fairness and anti-cheat. Server is authoritative for combat and movement.
+•	Component-based architecture: Allows modularity and scalability (easy to add new Legends or weapons).
+•	Event-driven communication: Reduces coupling between systems and improves maintainability.
+•	Separation of concerns: Each system has a clear responsibility (combat, inventory, matchmaking, etc.).
+•	Scalability: Architecture supports large player counts and future expansions.
+
